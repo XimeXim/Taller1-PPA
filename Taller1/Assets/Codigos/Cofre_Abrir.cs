@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cofre_Abrit : MonoBehaviour
+public class Cofre_Abrir : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

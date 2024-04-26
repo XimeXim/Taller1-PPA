@@ -25,4 +25,5 @@ public class Manejador_Audio : MonoBehaviour
         sonido.loop = LoopTrue;
         sonido.Play();
     }
+
 }

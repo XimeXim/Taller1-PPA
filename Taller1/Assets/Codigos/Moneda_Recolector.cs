@@ -15,4 +15,12 @@ public class Moneda_Recolector : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D, collision)
+    {
+        if (collision.CompareTag("Jugador"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
