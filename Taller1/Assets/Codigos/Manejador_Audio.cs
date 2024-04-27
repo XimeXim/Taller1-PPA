@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Manejador_Audio : MonoBehaviour
 {
-    public Clip [] sonidos;
-    public Audio sonido;
+    public AudioClip [] sonidos;
+    public AudioSource sonido;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,4 +26,8 @@ public class Manejador_Audio : MonoBehaviour
         sonido.Play();
     }
 
+    public void stop()
+    {
+        sonido.Stop();
+    }
 }

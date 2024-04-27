@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ using UnityEngine.UI;
 public class Manejador_Jugador : MonoBehaviour
 {
     public float velocidadMovimento = 5f;
-    public tipoMovimiento;
+    public int tipoMovimiento;
 
     private Rigidbody2D rb2D;
 
@@ -34,7 +33,7 @@ public class Manejador_Jugador : MonoBehaviour
     void Update()
     {
         if(juegoEnPausa){
-            tiempoPausa -= Tiempo.unscaledDeltaTime;
+            tiempoPausa -= Time.unscaledDeltaTime;
         }
         if(tiempoPausa <= 0){
             ContinuarJuego();
@@ -72,14 +71,19 @@ public class Manejador_Jugador : MonoBehaviour
 
         if(tipoMovimiento == 1)
         {
-            transform.Translate(movimiento + velocidadMovimento + Time.deltaTime);
+            transform.Translate(movimiento * velocidadMovimento * Time.deltaTime);
         }else if(tipoMovimiento == 2)
         {
-            rb2D.velocity = movimiento + velocidadMovimento;
+            rb2D.velocity = movimiento * velocidadMovimento;
         }
         else
         {
-            rb2D.AddForce(movimiento+ velocidadMovimento);
+            rb2D.AddForce(movimiento * velocidadMovimento);
         }
+    }
+
+    private void ContinuarJuego()
+    {
+
     }
 }

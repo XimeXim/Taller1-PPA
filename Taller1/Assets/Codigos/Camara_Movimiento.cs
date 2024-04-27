@@ -7,13 +7,13 @@ public class Camara_Movimiento : MonoBehaviour
 {
     public Transform jugador;
     public Vector3 offset = new Vector3 (0f,5f,-10f);
-    private Manejador_Juego manejador_Juego;
-    public Audio sonido;
+    private Manejador_Jugador manejador_Jugador;
+    public AudioSource sonido;
     // Start is called before the first frame update
     void Start()
     {
         sonido.pitch = 1f;
-        manejador_Juego=FindAnyObjectByType<Manejador_Juego>();        
+        manejador_Jugador = FindAnyObjectByType<Manejador_Jugador>();        
     }
 
     // Update is called once per frame
@@ -22,11 +22,11 @@ public class Camara_Movimiento : MonoBehaviour
         if(!jugador){
             return;
         }
-        Vector_1 nuevaPos = jugador.posicion + offset;
+        Vector3 nuevaPos = jugador.position + offset;
 
-        transform.posicion = Vector_1.Lerp(transform.posicion, nuevaPos);
+        transform.position = Vector3.Lerp(transform.position, nuevaPos, 0);
 
-        if(manejador_Juego.getVida() == 1){
+        if(manejador_Jugador.getVida() == 1){
             sonido.pitch = 2f;
         }
 
