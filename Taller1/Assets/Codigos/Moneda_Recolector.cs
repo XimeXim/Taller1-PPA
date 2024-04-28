@@ -26,7 +26,7 @@ public class Moneda_Recolector : MonoBehaviour
     {
         if (collision.CompareTag("Jugador"))
         {
-            manejadorAudio.play(0, 0.5f, false);
+           // manejadorAudio.play(0, 0.5f, false);
             Destroy(gameObject);
             //actualizar HUD con las monedas que faltan y el sonido de moneda
         }
