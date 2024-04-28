@@ -24,6 +24,7 @@ public class Manejador_Jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(juegoEnPausa){
             tiempoPausa -= Time.unscaledDeltaTime;
         }
@@ -32,24 +33,13 @@ public class Manejador_Jugador : MonoBehaviour
         }
         
     }
-  /* private void FixedUpdate() 
-    {
-        float movimientoHorizontal = Input.GetAxis("Horizontal");
-        float movimientVertical = Input.GetAxis("Vertical");
-
-        Vector3 movimiento = new Vector2(movimientoHorizontal, movimientoVertical);
-
-        if(tipoMovimiento ==1)
-        {
-            transform.Translate(movimiento * velocidadMovimiento * Time.deltaTime);
-        }
-    }
-  */
+  
     public void WinnedGame()
     {
         juegoFinalizado.enabled = true;
     }
 
+    
 
     private void ContinuarJuego()
     {

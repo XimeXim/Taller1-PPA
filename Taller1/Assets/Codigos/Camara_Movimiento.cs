@@ -12,7 +12,7 @@ public class Camara_Movimiento : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sonido.pitch = 1f;
+        //sonido.pitch = 1f;
         jugador_Perro = FindAnyObjectByType<Jugador_Perro>();        
     }
 
@@ -24,7 +24,7 @@ public class Camara_Movimiento : MonoBehaviour
         }
         Vector3 nuevaPos = jugador.position + offset;
 
-        transform.position = Vector3.Lerp(transform.position, nuevaPos, 0);
+        transform.position = Vector3.Lerp(transform.position, nuevaPos, true);
 
 
     }

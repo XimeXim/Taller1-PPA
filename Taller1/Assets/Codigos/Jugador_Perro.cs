@@ -6,7 +6,7 @@ public class Jugador_Perro : MonoBehaviour
 {
     public float velocidadMovimiento = 5f;
     public int tipoMovimiento;
-    public float fuerzaSalto = 10f;
+    public float fuerzaSalto = 8f;
     public int vidaMaxima = 2;
     private int monedasRecolectadas;
     private int monedasWin = 14;
@@ -31,15 +31,9 @@ public class Jugador_Perro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movimientoHorizontal = Input.GetAxis("Horizontal");
-
-        rb2d.velocity = new Vector2(movimientoHorizontal * velocidadMovimiento, rb2d.velocity.y);
-
-        if(enSuelo && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb2d.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-            animator.SetTrigger("Salto");
-            manejador_Audio.play(3, 0.5f, false);
+            Saltar();
         }
 
     }
@@ -54,6 +48,13 @@ public class Jugador_Perro : MonoBehaviour
         if (tipoMovimiento ==1)
         {
             transform.Translate(movimiento * velocidadMovimiento * Time.deltaTime);
+        }else if(tipoMovimiento == 2)
+        {
+            rb2d.velocity = movimiento * velocidadMovimiento;
+        }
+        else
+        {
+            rb2d.AddForce(movimiento * velocidadMovimiento);
         }
     }
 
@@ -93,5 +94,9 @@ public class Jugador_Perro : MonoBehaviour
         }
     }
 
+    public void Saltar()
+    {
+        rb2d.velocity = Vector2.up * fuerzaSalto;
+    }
  
 }
