@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jugador_Perro : MonoBehaviour
 {
+    public int tipoMovimiento;
     public float velocidadMovimiento = 5f;
     public float fuerzaSalto = 10f;
     public int vidaMaxima = 2;
@@ -17,6 +18,7 @@ public class Jugador_Perro : MonoBehaviour
     private Manejador_Audio manejador_Audio;
     private Moneda_Recolector moneda_Recolector;
     private Manejador_Jugador manejador_Jugador;
+    public AudioSource sonido;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,17 @@ public class Jugador_Perro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float movimientoHorizontal = Input.GetAxis("Horizontal");
+
+        rb2d.velocity = new Vector2(movimientoHorizontal * velocidadMovimiento, rb2d.velocity.y);
+
+        if(enSuelo && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb2d.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            animator.SetTrigger("Salto");
+            manejador_Audio.play(3, 0.5f, false);
+        }
+
     }
 
     public void alChocar(Collision2D collision)
@@ -57,10 +69,16 @@ public class Jugador_Perro : MonoBehaviour
         vidaActual--;
         animator.SetTrigger("Herido");
         manejador_Audio.play(2, 0.5f, false);
-        if(vidaActual <= 0)
+
+        if (vidaActual == 1)
+        {
+            sonido.pitch = 2f;
+        }
+        else if (vidaActual <= 0)
         {
             //Reiniciar la escena
         }
     }
 
+ 
 }
