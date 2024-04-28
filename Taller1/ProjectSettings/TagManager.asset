@@ -7,6 +7,8 @@ TagManager:
   - Suelo
   - Jugador
   - Moneda
+  - monedasTotalesText
+  - monedasFaltantesText
   layers:
   - Default
   - TransparentFX

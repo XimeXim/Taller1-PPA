@@ -26,7 +26,12 @@ public class Moneda_Recolector : MonoBehaviour
     {
         if (collision.CompareTag("Jugador"))
         {
-           // manejadorAudio.play(0, 0.5f, false);
+            // manejadorAudio.play(0, 0.5f, false);
+            AudioSource audioSource = collision.GetComponent<AudioSource>(); // Obtén el AudioSource del perro
+            if (audioSource != null && audioSource.clip != null)
+            {
+                audioSource.PlayOneShot(audioSource.clip); // Reproduce el clip de audio del perro
+            }
             Destroy(gameObject);
             //actualizar HUD con las monedas que faltan y el sonido de moneda
         }
