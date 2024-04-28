@@ -10,6 +10,7 @@ TagManager:
   - monedasTotalesText
   - monedasFaltantesText
   - Cofre
+  - Enemigo
   layers:
   - Default
   - TransparentFX
