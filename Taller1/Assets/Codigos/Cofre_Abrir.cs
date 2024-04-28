@@ -15,4 +15,12 @@ public class Cofre_Abrir : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if(collider2D.CompareTag("Jugador"))
+        {
+            //abrir cofre y mensaje de ganar
+        }
+    }
 }
