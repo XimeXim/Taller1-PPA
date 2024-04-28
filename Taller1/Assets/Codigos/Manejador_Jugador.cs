@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Manejador_Jugador : MonoBehaviour
 {
+    
     private float tiempoPausa;
     private bool juegoEnPausa = false;
     public Text juegoFinalizado;
@@ -31,8 +32,19 @@ public class Manejador_Jugador : MonoBehaviour
         }
         
     }
-   
+  /* private void FixedUpdate() 
+    {
+        float movimientoHorizontal = Input.GetAxis("Horizontal");
+        float movimientVertical = Input.GetAxis("Vertical");
 
+        Vector3 movimiento = new Vector2(movimientoHorizontal, movimientoVertical);
+
+        if(tipoMovimiento ==1)
+        {
+            transform.Translate(movimiento * velocidadMovimiento * Time.deltaTime);
+        }
+    }
+  */
     public void WinnedGame()
     {
         juegoFinalizado.enabled = true;

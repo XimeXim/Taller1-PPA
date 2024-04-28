@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Jugador_Perro : MonoBehaviour
 {
-    public int tipoMovimiento;
     public float velocidadMovimiento = 5f;
+    public int tipoMovimiento;
     public float fuerzaSalto = 10f;
     public int vidaMaxima = 2;
     private int monedasRecolectadas;
@@ -42,6 +42,19 @@ public class Jugador_Perro : MonoBehaviour
             manejador_Audio.play(3, 0.5f, false);
         }
 
+    }
+
+    private void FixedUpdate()
+    {
+        float movimientoHorizontal = Input.GetAxis("Horizontal");
+        float movimientoVertical = Input.GetAxis("Vertical");
+
+        Vector3 movimiento = new Vector2(movimientoHorizontal, movimientoVertical);
+
+        if (tipoMovimiento ==1)
+        {
+            transform.Translate(movimiento * velocidadMovimiento * Time.deltaTime);
+        }
     }
 
     public void alChocar(Collision2D collision)
