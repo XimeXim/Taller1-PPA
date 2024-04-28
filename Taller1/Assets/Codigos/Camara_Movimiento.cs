@@ -23,8 +23,8 @@ public class Camara_Movimiento : MonoBehaviour
             return;
         }
         Vector3 nuevaPos = jugador.position + offset;
-
-        transform.position = Vector3.Lerp(transform.position, nuevaPos, true);
+        nuevaPos.z = transform.position.z;
+        transform.position = Vector3.Lerp(transform.position, nuevaPos, Time.deltaTime * 5f);
 
 
     }

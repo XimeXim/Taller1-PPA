@@ -6,6 +6,7 @@ public class Moneda_Recolector : MonoBehaviour
 {
     public Manejador_Audio manejadorAudio;
     public int valorMoneda = 1;
+    public Jugador_Perro jugador_Perro;
 
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class Moneda_Recolector : MonoBehaviour
     void Update()
     {
         
+        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -25,8 +27,15 @@ public class Moneda_Recolector : MonoBehaviour
         if (collision.CompareTag("Jugador"))
         {
             manejadorAudio.play(0, 0.5f, false);
-            //Destroy(gameObject);
+            Destroy(gameObject);
             //actualizar HUD con las monedas que faltan y el sonido de moneda
         }
     }
+
+    public void ComerMoneda()
+    {
+        Destroy(gameObject); // Destruye el objeto de la moneda
+        // Puedes agregar aquí cualquier otra lógica relacionada con la recolección de la moneda
+    }
+
 }

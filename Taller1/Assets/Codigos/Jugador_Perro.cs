@@ -16,7 +16,7 @@ public class Jugador_Perro : MonoBehaviour
     private int vidaActual;
     private bool enSuelo;
     private Manejador_Audio manejador_Audio;
-    private Moneda_Recolector moneda_Recolector;
+    public Moneda_Recolector moneda_Recolector;
     private Manejador_Jugador manejador_Jugador;
     public AudioSource sonido;
 
@@ -35,6 +35,7 @@ public class Jugador_Perro : MonoBehaviour
         {
             Saltar();
         }
+        
 
     }
 
@@ -70,14 +71,16 @@ public class Jugador_Perro : MonoBehaviour
     {
         if (collider.CompareTag("Moneda"))
         {
+            moneda_Recolector.ComerMoneda();
             monedasRecolectadas++;
-            moneda_Recolector.OnTriggerEnter2D(collider);
-        }else if(collider.CompareTag("Cofre") && monedasRecolectadas == monedasWin)
+        }
+        else if (collider.CompareTag("Cofre") && monedasRecolectadas == monedasWin)
         {
             //abrir cofre y mensaje de juego ganado
         }
     }
-    
+
+
     public void PierdeVida()
     {
         vidaActual--;
@@ -100,3 +103,4 @@ public class Jugador_Perro : MonoBehaviour
     }
  
 }
+
