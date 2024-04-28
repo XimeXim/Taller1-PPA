@@ -59,15 +59,8 @@ public class Jugador_Perro : MonoBehaviour
         }
     }
 
-    public void alChocar(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemigo"))
-        {
-            PierdeVida();
-        }
-    }
 
-    public void OnTrigger(Collider2D collider)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Moneda"))
         {

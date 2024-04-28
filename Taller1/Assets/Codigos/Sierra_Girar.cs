@@ -16,7 +16,7 @@ public class Sierra_Girar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.forward * velocidadGiro,Time.deltaTime);   
+        transform.Rotate(0f,0f, velocidadGiro * Time.deltaTime);   
     }
 
     public void OnColissionEnter2D(Collision2D collision2D)

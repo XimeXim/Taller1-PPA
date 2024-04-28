@@ -9,6 +9,7 @@ TagManager:
   - Moneda
   - monedasTotalesText
   - monedasFaltantesText
+  - Cofre
   layers:
   - Default
   - TransparentFX
