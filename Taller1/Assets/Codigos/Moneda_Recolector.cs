@@ -32,16 +32,9 @@ public class Moneda_Recolector : MonoBehaviour
             {
                 audioSource.PlayOneShot(audioSource.clip); // Reproduce el clip de audio del perro
             }
-            
+            Destroy(gameObject);
             //actualizar HUD con las monedas que faltan y el sonido de moneda
         }
-    }
-
-    public void ComerMoneda()
-    {
-       
-        Destroy(gameObject); // Destruye el objeto de la moneda
-        // Puedes agregar aquí cualquier otra lógica relacionada con la recolección de la moneda
     }
 
 }

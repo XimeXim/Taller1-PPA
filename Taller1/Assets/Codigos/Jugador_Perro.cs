@@ -64,7 +64,7 @@ public class Jugador_Perro : MonoBehaviour
     {
         if (collider.CompareTag("Moneda"))
         {
-            moneda_Recolector.ComerMoneda();
+            
             monedasRecolectadas++;
         }
         else if (collider.CompareTag("Cofre") && monedasRecolectadas == monedasWin)
