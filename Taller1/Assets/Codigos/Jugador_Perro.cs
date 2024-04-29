@@ -8,7 +8,7 @@ public class Jugador_Perro : MonoBehaviour
     public int tipoMovimiento;
     public float fuerzaSalto = 8f;
     public int vidaMaxima = 2;
-    private int monedasRecolectadas;
+    public int monedasRecolectadas;
     private int monedasWin = 14;
 
     private Rigidbody2D rb2d;
@@ -38,7 +38,10 @@ public class Jugador_Perro : MonoBehaviour
         
 
     }
-
+    public string getMonedasRecolectadas()
+    {
+        return monedasRecolectadas.ToString();
+    }
     private void FixedUpdate()
     {
         float movimientoHorizontal = Input.GetAxis("Horizontal");
