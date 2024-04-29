@@ -8,6 +8,7 @@ public class Bloque_Caida : MonoBehaviour
     public float rangoActivacion = 5f; // Cambia este valor según el rango de activación deseado
     private Rigidbody2D rb2d;
     private bool jugadorCerca = false;
+    public Jugador_Perro jugador_Perro;
 
     void Start()
     {
@@ -28,6 +29,21 @@ public class Bloque_Caida : MonoBehaviour
                 ActivarBloque();
             }
         }
+    }
+
+    public void OnColissionEnter2D(Collision2D collision2D)
+    {
+
+        if (collision2D.gameObject.CompareTag("Jugador"))
+        {
+            jugador_Perro = collision2D.gameObject.GetComponent<Jugador_Perro>();
+            if (jugador_Perro != null)
+            {
+                jugador_Perro.PierdeVida();
+
+            }
+        }
+
     }
 
     void ActivarBloque()

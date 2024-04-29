@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Moneda_Recolector : MonoBehaviour
 {
     public Manejador_Audio manejadorAudio;
-    public int valorMoneda = 1;
     public Jugador_Perro jugador_Perro;
+    public Text marcadorMonedas;
 
 
 
@@ -33,6 +34,7 @@ public class Moneda_Recolector : MonoBehaviour
             {
                 audioSource.PlayOneShot(audioSource.clip); // Reproduce el clip de audio del perro
             }
+            jugador_Perro.getMonedasRecolectadas();
             Destroy(gameObject);
             //actualizar HUD con las monedas que faltan y el sonido de moneda
         }

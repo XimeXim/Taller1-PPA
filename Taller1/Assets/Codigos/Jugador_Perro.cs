@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jugador_Perro : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Jugador_Perro : MonoBehaviour
     public int vidaMaxima = 2;
     public int monedasRecolectadas;
     private int monedasWin = 14;
+    public Text marcadorMonedas;
+    public Text marcadorVidas;
 
     private Rigidbody2D rb2d;
     private Animator animator;
@@ -26,6 +29,7 @@ public class Jugador_Perro : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         vidaActual = vidaMaxima;
+
     }
 
     // Update is called once per frame
@@ -34,14 +38,19 @@ public class Jugador_Perro : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Saltar();
-        }
-        
+        }        
 
     }
-    public string getMonedasRecolectadas()
+    public void getMonedasRecolectadas()
     {
-        return monedasRecolectadas.ToString();
+        marcadorMonedas.text = "    " + monedasRecolectadas.ToString() + "/14";
     }
+
+    public void ShowVidas()
+    {
+        marcadorMonedas.text = "    " + vidaActual.ToString();
+    }
+
     private void FixedUpdate()
     {
         float movimientoHorizontal = Input.GetAxis("Horizontal");
@@ -52,7 +61,8 @@ public class Jugador_Perro : MonoBehaviour
         if (tipoMovimiento ==1)
         {
             transform.Translate(movimiento * velocidadMovimiento * Time.deltaTime);
-        }else if(tipoMovimiento == 2)
+        }
+        else if (tipoMovimiento == 2)
         {
             rb2d.velocity = movimiento * velocidadMovimiento;
         }
@@ -60,8 +70,8 @@ public class Jugador_Perro : MonoBehaviour
         {
             rb2d.AddForce(movimiento * velocidadMovimiento);
         }
-    }
 
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -69,6 +79,11 @@ public class Jugador_Perro : MonoBehaviour
         {
             
             monedasRecolectadas++;
+            getMonedasRecolectadas();
+        }
+        else if (collider.CompareTag("Enemigo"))
+        {
+            ShowVidas();
         }
         else if (collider.CompareTag("Cofre") && monedasRecolectadas == monedasWin)
         {
