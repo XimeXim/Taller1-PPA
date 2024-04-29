@@ -11,8 +11,12 @@ public class Jugador_Perro : MonoBehaviour
     public int vidaMaxima = 2;
     public int monedasRecolectadas;
     private int monedasWin = 14;
+<<<<<<< Updated upstream
     public Text marcadorMonedas;
     public Text marcadorVidas;
+=======
+    public Animator cofreAnimator;
+>>>>>>> Stashed changes
 
     private Rigidbody2D rb2d;
     private Animator animator;
@@ -87,8 +91,9 @@ public class Jugador_Perro : MonoBehaviour
         }
         else if (collider.CompareTag("Cofre") && monedasRecolectadas == monedasWin)
         {
-            //abrir cofre y mensaje de juego ganado
+            cofreAnimator.SetTrigger("AbrirCofre");
         }
+
     }
 
 

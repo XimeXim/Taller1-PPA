@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Cofre_Abrir : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Animator animator; // Referencia al componente Animator del cofre
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(collider2D.CompareTag("Jugador"))
+        if (collider2D.CompareTag("Jugador"))
         {
-            //abrir cofre y mensaje de ganar
+            // Activa la animación de apertura del cofre
+            animator.SetTrigger("AbrirCofre");
+
+            // Muestra un mensaje de ganar
+            Debug.Log("¡Has ganado!");
+
+            // Desactiva el collider del cofre para evitar que se active más de una vez
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }
