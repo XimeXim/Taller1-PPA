@@ -5,39 +5,46 @@ using UnityEngine.UI;
 
 public class Moneda_Recolector : MonoBehaviour
 {
+    // Referencia al script Manejador_Audio utilizado para controlar el audio del juego.
     public Manejador_Audio manejadorAudio;
+
+    // Referencia al script Jugador_Perro utilizado para interactuar con el jugador perro.
     public Jugador_Perro jugador_Perro;
+
+    // Referencia al objeto Texto que muestra el marcador de monedas.
     public Text marcadorMonedas;
 
-
-
-    // Start is called before the first frame update
+    // Método que se llama al iniciar el objeto.
     void Start()
     {
-        manejadorAudio = FindObjectOfType<Manejador_Audio>();    
+        // Encuentra y asigna una referencia al componente Manejador_Audio en la escena.
+        manejadorAudio = FindObjectOfType<Manejador_Audio>();
     }
 
-    // Update is called once per frame
+    // Método que se llama en cada fotograma.
     void Update()
     {
-        
-        
+        // No se realiza ninguna acción en este método en este momento.
     }
 
+    // Método llamado cuando un objeto entra en el área de activación de este objeto.
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        // Verifica si el objeto que entra en contacto tiene la etiqueta "Jugador".
         if (collision.CompareTag("Jugador"))
         {
-            // manejadorAudio.play(0, 0.5f, false);
-            AudioSource audioSource = collision.GetComponent<AudioSource>(); // Obtén el AudioSource del perro
+            // Obtiene el componente AudioSource del jugador.
+            AudioSource audioSource = collision.GetComponent<AudioSource>();
+            // Si el componente y su clip de audio asociado existen, reproduce el clip de audio.
             if (audioSource != null && audioSource.clip != null)
             {
-                audioSource.PlayOneShot(audioSource.clip); // Reproduce el clip de audio del perro
+                audioSource.PlayOneShot(audioSource.clip);
             }
+            // Llama al método getMonedasRecolectadas del jugador perro para incrementar el contador de monedas recolectadas.
             jugador_Perro.getMonedasRecolectadas();
+            // Destruye este objeto (la moneda recolectada).
             Destroy(gameObject);
-            //actualizar HUD con las monedas que faltan y el sonido de moneda
+            // Aquí puedes agregar la lógica para actualizar el HUD con las monedas restantes y el sonido de moneda.
         }
     }
-
 }
