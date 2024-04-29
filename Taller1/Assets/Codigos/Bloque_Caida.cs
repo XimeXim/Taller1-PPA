@@ -4,56 +4,40 @@ using UnityEngine;
 
 public class Bloque_Caida : MonoBehaviour
 {
-    
     public float cae = 5f;
-    public float distanciaJugador = 3f;
+    public float rangoActivacion = 5f; // Cambia este valor según el rango de activación deseado
     private Rigidbody2D rb2d;
     private bool jugadorCerca = false;
-    private bool cayo = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();      
+        rb2d = GetComponent<Rigidbody2D>();
+        // Al inicio, desactiva el Rigidbody2D del bloque
+        rb2d.isKinematic = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!jugadorCerca && !cayo)
+        // Verifica si el jugador está dentro del rango de activación
+        if (!jugadorCerca)
         {
-            Caer();
-            cayo = true;
-        }
-    }
-
-   /* public void OnColissionEnter2D(Collision2D collision2D)
-    {
-
-        if (collision2D.gameObject.CompareTag("Jugador"))
-        {
-            jugador_Perro = collision2D.gameObject.GetComponent<Jugador_Perro>();
-            if (jugador_Perro != null)
+            GameObject jugador = GameObject.FindGameObjectWithTag("Jugador");
+            if (jugador != null && Vector2.Distance(transform.position, jugador.transform.position) <= rangoActivacion)
             {
-                jugador_Perro.PierdeVida();
-
+                // Activa el bloque cuando el jugador está dentro del rango de activación
+                ActivarBloque();
             }
         }
-
-    }*/
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Jugador"))
-        {
-            jugadorCerca = true;
-        }
     }
 
-
-    public void Caer()
+    void ActivarBloque()
     {
+        // Activa la gravedad y el movimiento del Rigidbody2D del bloque
+        rb2d.isKinematic = false;
         rb2d.velocity = new Vector2(0, -cae);
+        // Destruye el bloque después de un tiempo
         Destroy(gameObject, 2f);
+        // Establece jugadorCerca a true para evitar que se active más de una vez
+        jugadorCerca = true;
     }
-
 }

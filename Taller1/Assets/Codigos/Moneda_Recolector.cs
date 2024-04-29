@@ -9,6 +9,7 @@ public class Moneda_Recolector : MonoBehaviour
     public Jugador_Perro jugador_Perro;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
